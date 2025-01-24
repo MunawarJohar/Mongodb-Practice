@@ -1,0 +1,58 @@
+// 1. Switch to the "WebDevelopment" database (it will be created if it doesn't exist)
+use WebDevelopment;
+
+// 2. Create the "Frontend" collection and insert multiple documents
+db.Frontend.insertMany([
+    { course: "HTML & CSS Basics", price: 50, instructor: "Munawar Hussain" },
+    { course: "JavaScript Advanced", price: 100, instructor: "Shazil Shahid" },
+    { course: "React for Beginners", price: 120, instructor: "Raziq" },
+    { course: "Frontend Frameworks", price: 150, instructor: "Sharif" },
+    { course: "Bootstrap & Tailwind", price: 70, instructor: "Hussnain" }
+]);
+
+// 3. Retrieve all documents from the "Frontend" collection
+db.Frontend.find();
+
+// 4. Find courses with a price greater than 100
+db.Frontend.find({ price: { $gt: 100 } });
+
+// 5. Update the price of "JavaScript Advanced" to 110
+db.Frontend.updateOne(
+    { course: "JavaScript Advanced" },
+    { $set: { price: 110 } }
+);
+
+// 6. Add a "discounted" field to all courses with a price less than 100
+db.Frontend.updateMany(
+    { price: { $lt: 100 } },
+    { $set: { discounted: true } }
+);
+
+// 7. Delete the course "Bootstrap & Tailwind"
+db.Frontend.deleteOne({ course: "Bootstrap & Tailwind" });
+
+// 8. Group courses by instructor and count their total courses
+db.Frontend.aggregate([
+    { $group: { _id: "$instructor", totalCourses: { $sum: 1 } } }
+]);
+
+// 9. Embed related data: Create a course with modules and topics
+db.Courses.insertOne({
+    course: "Full Stack Development",
+    modules: [
+        { name: "Frontend", topics: ["HTML", "CSS", "JavaScript"] },
+        { name: "Backend", topics: ["Node.js", "Express", "MongoDB"] }
+    ]
+});
+
+// 10. Reference data: Create instructors with references to courses
+db.Instructors.insertMany([
+    { name: "Munawar Hussain", specialty: "HTML & CSS Basics" },
+    { name: "Shazil Shahid", specialty: "JavaScript Advanced" }
+]);
+
+// 11. Delete the "Frontend" collection
+db.Frontend.drop();
+
+// 12. Delete the "WebDevelopment" database
+db.dropDatabase();

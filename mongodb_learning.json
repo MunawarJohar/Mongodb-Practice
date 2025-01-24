@@ -1,0 +1,79 @@
+{
+  "topics": [
+    {
+      "title": "1. Create a Database",
+      "description": "Switch to a database or create one if it doesn't exist.",
+      "code": "use WebDevelopment"
+    },
+    {
+      "title": "2. Create a Collection and Insert One Document",
+      "description": "Create a collection and insert a single document into it.",
+      "code": "db.Frontend.insertOne({ \"course\": \"HTML & CSS Basics\", \"price\": 50, \"instructor\": \"Munawar Hussain\" })"
+    },
+    {
+      "title": "3. Insert Multiple Documents",
+      "description": "Insert multiple documents into a collection.",
+      "code": "db.Frontend.insertMany([ { \"course\": \"JavaScript Advanced\", \"price\": 100, \"instructor\": \"Shazil Shahid\" }, { \"course\": \"React for Beginners\", \"price\": 120, \"instructor\": \"Raziq\" }, { \"course\": \"Frontend Frameworks\", \"price\": 150, \"instructor\": \"Sharif\" }, { \"course\": \"UI/UX Design Principles\", \"price\": 80, \"instructor\": \"Alam\" }, { \"course\": \"Bootstrap & Tailwind\", \"price\": 70, \"instructor\": \"Hussnain\" } ])"
+    },
+    {
+      "title": "4. Read Data (Find All Documents)",
+      "description": "Retrieve all documents from a collection.",
+      "code": "db.Frontend.find().pretty()"
+    },
+    {
+      "title": "5. Query Data (Filter)",
+      "description": "Find documents that match specific criteria.",
+      "code": "db.Frontend.find({ \"price\": { \"$gt\": 100 } }).pretty()"
+    },
+    {
+      "title": "6. Update One Document",
+      "description": "Update a specific field in one document.",
+      "code": "db.Frontend.updateOne({ \"course\": \"JavaScript Advanced\" }, { \"$set\": { \"price\": 110 } })"
+    },
+    {
+      "title": "7. Update Multiple Documents",
+      "description": "Update fields in multiple documents matching a condition.",
+      "code": "db.Frontend.updateMany({ \"price\": { \"$lt\": 100 } }, { \"$set\": { \"discounted\": true } })"
+    },
+    {
+      "title": "8. Delete One Document",
+      "description": "Delete one document matching a condition.",
+      "code": "db.Frontend.deleteOne({ \"course\": \"UI/UX Design Principles\" })"
+    },
+    {
+      "title": "9. Delete Multiple Documents",
+      "description": "Delete all documents matching a condition.",
+      "code": "db.Frontend.deleteMany({ \"price\": { \"$lt\": 100 } })"
+    },
+    {
+      "title": "10. Use Indexes",
+      "description": "Create an index on a field to speed up queries.",
+      "code": "db.Frontend.createIndex({ \"course\": 1 })"
+    },
+    {
+      "title": "11. Aggregation (Group and Count)",
+      "description": "Use aggregation to summarize data.",
+      "code": "db.Frontend.aggregate([ { \"$group\": { \"_id\": \"$instructor\", \"totalCourses\": { \"$sum\": 1 } } } ])"
+    },
+    {
+      "title": "12. Embedding Documents",
+      "description": "Store related data in a single document.",
+      "code": "db.Courses.insertOne({ \"course\": \"Full Stack\", \"modules\": [ { \"name\": \"Frontend\", \"topics\": [\"HTML\", \"CSS\", \"JavaScript\"] }, { \"name\": \"Backend\", \"topics\": [\"Node.js\", \"Express\", \"MongoDB\"] } ] })"
+    },
+    {
+      "title": "13. Referencing Documents",
+      "description": "Store relationships using references to other documents.",
+      "code": "db.Instructors.insertOne({ \"name\": \"Munawar Hussain\", \"specialty\": \"Frontend\" })"
+    },
+    {
+      "title": "14. Drop a Collection",
+      "description": "Delete an entire collection.",
+      "code": "db.Frontend.drop()"
+    },
+    {
+      "title": "15. Drop a Database",
+      "description": "Delete an entire database.",
+      "code": "db.dropDatabase()"
+    }
+  ]
+}
